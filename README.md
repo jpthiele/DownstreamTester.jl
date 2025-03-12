@@ -1,3 +1,6 @@
+
+[![](https://img.shields.io/badge/docs-dev-blue.svg)](https://jpthiele.github.io/DownstreamTester.jl/dev/index.html)
+
 # DownstreamTester
 
 This package is aimed at simplifying and denoising nightly and downstream tests.
