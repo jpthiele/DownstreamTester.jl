@@ -1,4 +1,4 @@
-# Nightly GitHub Action 
+# Nightly GitHub Action
 
 As a final step we can now set up the GitHub action workflow file `downstreamtester.yml`.
 This file has to be added to the main branch in the `.github/workflows/` folder.
@@ -17,7 +17,7 @@ Additionally, we want to be able to run the job manually, i.e. on `workflow_disp
 ```YAML
 name: DownstreamTester
 
-on: 
+on:
   schedule:
     - cron: 0 6 * * * # Every day at 6:00
 
@@ -29,17 +29,17 @@ on:
 
 Our job will be called `nightly`.
 
-Since we are mostly interested in incompatibilities and breaking changes 
-between our package and the current nightly version of Julia we only 
+Since we are mostly interested in incompatibilities and breaking changes
+between our package and the current nightly version of Julia we only
 run the job on Linux, or more specifically the latest release of Ubuntu.
 
 We also have to set our [Personal Access Token](@ref) as the environment
-variable `ISSUETOKEN`. This is the variable DownstreamTester.jl will query 
-to authenticate with GitHub. 
+variable `ISSUETOKEN`. This is the variable DownstreamTester.jl will query
+to authenticate with GitHub.
 The variable is directly inserted into `authenticate()` of [Github.jl](https://github.com/JuliaWeb/GitHub.jl)
-and not read or saved in any other fashion. 
+and is not read or saved in any other fashion.
 If you feel unsure about this feel free to search the whole DownstreamTester.jl
-code base for `ISSUETOKEN`!  
+code base for `ISSUETOKEN`!
 
 ```YAML
 jobs:
@@ -55,11 +55,11 @@ We start with the first steps of the action to set up the directory structure,
 Julia and git.
 
 We will need to checkout the main branch into a subfolder `main`
-and the logs (`ref:DownstreamTester/nightlylogs`) into a subfolder 
+and the logs (`ref:DownstreamTester/nightlylogs`) into a subfolder
 with the name `testdeps/logs` (don't change this name, it's hardcoded!).
 
 To be able to commit the logs into the logging branch we also have to set up
-the git user email and name. If you have set up a machine user, 
+the git user email and name. If you have set up a "machine user" (see [GitHub Docs](https://docs.github.com/en/get-started/learning-about-github/types-of-github-accounts#user-accounts)),
 you can use its name and email.
 ```YAML
     steps:
@@ -92,24 +92,25 @@ i.e. the one containing the [Configuration](@ref) file.
 We use Pkg to add and use DownstreamTester.
 
 !!!note
-   Registration of DownstreamTester in the general registry is planned 
-   for when the documentation of nightly is completed. 
-   But for now, the `Pkg.add` command has to be performed with the GitHub URL. 
-   
+   Registration of DownstreamTester in the general registry is planned
+   for when the documentation of nightly is completed.
+   But for now, the `Pkg.add` command has to be performed with the GitHub URL.
+
+
 Finally, we run the nightly workflow by calling:
 
 ```@docs
 nightly
 ```
-!!! note "arguments"
-    If you chose a different file name in [Configuration](@ref), 
+!!!note "arguments"
+    If you chose a different file name in [Configuration](@ref),
     be sure to set `configfile`.
 
     By default, the issue will be labeled with `nightly`, if that label exists.
     If you want a different label (or multiple) you can set `nightlylabels` to a vector of label names.
 
-    The `do_clone` keyword can be ignored as it is only for developing 
-    DownstreamTester. 
+    The `do_clone` keyword can be ignored as it is only for developing
+    DownstreamTester.
 
 ```YAML
       # Add DownstreamTester to local Julia environment and run nightly()

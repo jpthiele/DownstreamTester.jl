@@ -1,7 +1,7 @@
 name = "DownstreamTester"
 uuid = "a804653f-5eb8-4562-8be1-42891ba957af"
 authors = ["Jan Philipp Thiele <thiele@wias-berlin.de>"]
-version = "0.1.0"
+version = "0.1.1"
 
 [deps]
 Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"

@@ -3,20 +3,20 @@
 
 ## Idea
 If you set up a CI job for the nightly version, which mirrors the typical Julia CI setup,
-you may receive daily notifications about the same failing test in nightly. 
-If this is due to a problem with a package outside your control, it can lead you to ignore the notifications altogether. 
+you may receive daily notifications about the same failing test in nightly.
+If this is due to a problem with a package outside your control, it can lead you to ignore the notifications altogether.
 
-To mitigate this, DownstreamTester opens an issue if *new* failures happen and closes the issue once 
+To mitigate this, DownstreamTester opens an issue if *new* failures happen and closes the issue once
 all failures of that day are resolved again.
 
 ## Example showcase
-The nightly workflow is already set up in [VoronoiFVM.jl](https://github.com/WIAS-PDELib/VoronoiFVM.jl) and flagged an [issue](https://github.com/WIAS-PDELib/VoronoiFVM.jl/issues/175) about 
+The nightly workflow is already set up in [VoronoiFVM.jl](https://github.com/WIAS-PDELib/VoronoiFVM.jl) and flagged an [issue](https://github.com/WIAS-PDELib/VoronoiFVM.jl/issues/175) about
 the packages in the test environment not resolving.
 
 Since the problem was fixed, a comment was added
 to specify which failure is gone.
 
-Since all failures of that issue were fixed 
+Since all failures of that issue were fixed
 the issue was also closed automatically.
 
 !!! todo
@@ -28,9 +28,9 @@ the issue was also closed automatically.
 ```mermaid
 flowchart TD
     Start(("
-    call to 
+    call to
     nightly(configfile;
-    kwargs)   
+    kwargs)
     "))
     readconfig[read in config JSON file]
     clone["
@@ -43,12 +43,12 @@ flowchart TD
     openissue[Open new issue on GitHub]
     logissue[Log information about issue]
     newfix{New fixes?}
-    issueinfo[("   
+    issueinfo[("
     issue info:
-    - number                           
+    - number
     - repo
     - failures(Set)
-    - fixed(Set)            
+    - fixed(Set)
     ")]
     failureinfo[("
     failure info:
@@ -64,7 +64,7 @@ flowchart TD
     Julia nightly version
     "]
     markfixed["
-    Search resp. issue 
+    Search resp. issue
     mark failure(s) as fixed
     "]
     issuefixed{"
@@ -83,5 +83,4 @@ flowchart TD
     newfix --> |No| saveinfo --> done
     issuefixed --> |Yes| closeissue --> issuefixed
     issuefixed --> |All checked| saveinfo
-    
 ```
