@@ -89,20 +89,15 @@ you can use its name and email.
 
 We execute the Julia code in the `main` folder,
 i.e. the one containing the [Configuration](@ref) file.
-We use Pkg to add and use DownstreamTester.
-
-!!!note
-   Registration of DownstreamTester in the general registry is planned
-   for when the documentation of nightly is completed.
-   But for now, the `Pkg.add` command has to be performed with the GitHub URL.
-
+We use Pkg to add and use DownstreamTester for any version below 0.2
+to avoid that breaking changes break the CI workflow.
 
 Finally, we run the nightly workflow by calling:
 
 ```@docs
 nightly
 ```
-!!!note "arguments"
+!!! note "arguments"
     If you chose a different file name in [Configuration](@ref),
     be sure to set `configfile`.
 
@@ -112,6 +107,7 @@ nightly
     The `do_clone` keyword can be ignored as it is only for developing
     DownstreamTester.
 
+
 ```YAML
       # Add DownstreamTester to local Julia environment and run nightly()
       - name: run nightly()
@@ -119,7 +115,7 @@ nightly
         run: |
           julia -e '
             using Pkg
-            Pkg.add(url="https://github.com/jpthiele/DownstreamTester.jl")
+            Pkg.add(name="DownstreamTester",version="0.1")
             using DownstreamTester
             DownstreamTester.nightly()'
 ```
@@ -187,7 +183,7 @@ jobs:
         run: |
           julia -e '
             using Pkg
-            Pkg.add(url="https://github.com/jpthiele/DownstreamTester.jl")
+            Pkg.add(name="DownstreamTester",version="0.1")
             using DownstreamTester
             DownstreamTester.nightly()'
 

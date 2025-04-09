@@ -1,6 +1,6 @@
 # Personal Access Token
 
-!!!note
+!!! note
     This guide was tested last time on April 7, 2025.
 
 To open, comment and close issues on GitHub,
