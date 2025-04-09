@@ -14,6 +14,7 @@ makedocs(
             "Logging Branches" => "setup/logging.md",
             "Nightly GitHub Action" => "setup/nightly_action.md",
         ],
+        "Changelog" => "changes.md",
     ]
 )
 
