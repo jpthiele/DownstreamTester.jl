@@ -7,6 +7,7 @@ println("Testing...")
 
 include("test_previous_day.jl")
 #include("test_infos.jl")
+include("test_xml.jl")
 
 @testset "ExplicitImports" begin
     @test ExplicitImports.check_no_implicit_imports(DownstreamTester) === nothing
@@ -15,7 +16,6 @@ end
 
 @testset "Aqua" begin
     Aqua.test_all(DownstreamTester)
-
 end
 
 if isdefined(Docs, :undocumented_names) # >=1.11
