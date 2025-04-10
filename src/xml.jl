@@ -9,8 +9,18 @@ Get the filename, relative path and line number of the failing test evaluation
 """
 function get_test_location(message::String, pkgname::String)
     tmp = split(split(message, "\n")[1], "/")
-    ind = findall(x -> x == pkgname, tmp)[1]
-    return join(tmp[(ind + 2):end], '/')
+    found = findall(x -> x == pkgname, tmp)
+    if isempty(found)
+        @warn "DownstreamTester: Error location outside of actual package, looking for alternatives"
+        found = findall(x -> x == "Aqua", tmp)
+        if isempty(found)
+            @info "Unknown package, returning full path"
+            return join(tmp, '/')
+        end
+        @info "DownstreamTester: it was Aqua"
+        return "AQUA/" * join(tmp[(found[1] + 2):end], '/')
+    end
+    return join(tmp[(found[1] + 2):end], '/')
 end
 
 
