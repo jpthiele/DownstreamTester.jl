@@ -100,7 +100,7 @@ function nightly(configfile::String = "DownstreamTester.json"; do_clone::Bool = 
                 ".github/workflows/downstreamtester.yml"
             )
             push!(new, failure)
-            info = prev
+            info = NightlyInfo(latest, string(VERSION), prev.failures)
             if failure in prev.failures
                 @info "Problem already known."
             else
