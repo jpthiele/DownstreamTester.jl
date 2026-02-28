@@ -1,7 +1,7 @@
 name = "DownstreamTester"
 uuid = "a804653f-5eb8-4562-8be1-42891ba957af"
 authors = ["Jan Philipp Thiele <thiele@wias-berlin.de>","Patrick jaap <jaap@wias-berlin.de>"]
-version = "0.1.3"
+version = "0.1.4"
 
 [deps]
 Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
@@ -24,7 +24,7 @@ Aqua = "0.8.9"
 Dates = "1.10"
 ExplicitImports = "1.10.1"
 GitHub = "5.9.0"
-JSON = "0.21.4"
+JSON = "0.21.4,1"
 LightXML = "0.9.1"
 Pkg = "1.10"
 Test = "1.10"
